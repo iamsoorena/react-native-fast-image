@@ -46,12 +46,9 @@ class FastImageViewModule extends ReactContextBaseJavaModule {
                     Glide
                             .with(activity.getApplicationContext())
                             .load(glideUrl)
-                            .asBitmap()
-                            .encoder(new BitmapEncoder(Bitmap.CompressFormat.PNG,100))
                             .priority(priority)
                             .placeholder(TRANSPARENT_DRAWABLE)
-                            .format(DecodeFormat.PREFER_ARGB_8888)
-                            .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                            .dontTransform()
                             .preload();
                 }
             }

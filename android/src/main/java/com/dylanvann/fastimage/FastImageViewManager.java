@@ -146,12 +146,9 @@ class FastImageViewManager extends SimpleViewManager<ImageViewWithUrl> implement
         Glide
                 .with(view.getContext())
                 .load(glideUrl)
-                .asBitmap()
-                .encoder(new BitmapEncoder(Bitmap.CompressFormat.PNG,100))
                 .priority(priority)
                 .placeholder(TRANSPARENT_DRAWABLE)
-                .format(DecodeFormat.PREFER_ARGB_8888)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .dontTransform()
                 .listener(LISTENER)
                 .into(view);
     }
