@@ -5,11 +5,15 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
+import android.graphics.Bitmap;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.DecodeFormat;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.load.resource.bitmap.BitmapEncoder;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.bumptech.glide.request.target.Target;
@@ -142,8 +146,12 @@ class FastImageViewManager extends SimpleViewManager<ImageViewWithUrl> implement
         Glide
                 .with(view.getContext())
                 .load(glideUrl)
+                .asBitmap()
+                .encoder(new BitmapEncoder(Bitmap.CompressFormat.PNG,100))
                 .priority(priority)
                 .placeholder(TRANSPARENT_DRAWABLE)
+                .format(DecodeFormat.PREFER_ARGB_8888)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .listener(LISTENER)
                 .into(view);
     }
