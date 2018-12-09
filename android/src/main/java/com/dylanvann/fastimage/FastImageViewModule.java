@@ -4,14 +4,11 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.Bitmap;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.model.GlideUrl;
-import com.bumptech.glide.load.DecodeFormat;
-import com.bumptech.glide.load.resource.bitmap.BitmapEncoder;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -48,7 +45,7 @@ class FastImageViewModule extends ReactContextBaseJavaModule {
                             .load(glideUrl)
                             .priority(priority)
                             .placeholder(TRANSPARENT_DRAWABLE)
-                            .dontTransform()
+                            .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                             .preload();
                 }
             }
